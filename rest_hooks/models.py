@@ -129,9 +129,9 @@ get_opts = lambda m: m._meta.concrete_model._meta
 
 @receiver(post_save, dispatch_uid='instance-saved-hook')
 def model_saved(sender, instance,
-                        created,
-                        raw,
-                        using,
+                        created=False,
+                        raw=None,
+                        using=None,
                         **kwargs):
     """
     Automatically triggers "created" and "updated" actions.
@@ -144,7 +144,7 @@ def model_saved(sender, instance,
 
 @receiver(post_delete, dispatch_uid='instance-deleted-hook')
 def model_deleted(sender, instance,
-                          using,
+                          using=None,
                           **kwargs):
     """
     Automatically triggers "deleted" actions.
